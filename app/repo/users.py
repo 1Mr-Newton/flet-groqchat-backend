@@ -1,4 +1,3 @@
-from ..schema.userauth import UserRegisterRequest
 from ..models.user_class import User
 from sqlalchemy.orm import Session
 
@@ -18,7 +17,9 @@ class UserRepo:
 
         if user:
             return user
-        user = User(email=user_input.email, password=user_input.password)
+        user = User(
+            email=user_input.email, password=user_input.password, id=user_input.id
+        )
 
         self.db.add(user)
         self.db.commit()
